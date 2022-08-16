@@ -1,17 +1,13 @@
+/** @format */
+
 //Sarah is taking lines 1-70
-//useful EventBrite info
-    //city is city where event is
-    //start/end, datetime-tz
-var requestUrl = "https://www.eventbriteapi.com/v3/users/me/?token=JZFUF267ADFWSB3FQ7IE"
-var eventBriteApiKey = "JZFUF267ADFWSB3FQ7IE"; 
+//global variables
+var requestUrl =
+  "https://serpapi.com/search.json?engine=google_events&q=Events+in+Austin&api_key=823f12c05cfad6b99a96790ab94c7a164c5aa774017edccf89027201473d584f";
+var cityInput = document.querySelector("#city-input");
 
 fetch(requestUrl)
-.then(function (response) {
+  .then(function (response) {
     return response.json();
-})
-.then(function (data) {
-    // console.log('categories');
-    for (var i = 0; i < data.length; i++) {
-        console.log(data[i].categories)
-    }
-})
+  })
+ 
