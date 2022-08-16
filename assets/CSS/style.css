@@ -1,3 +1,21 @@
+:root {
+  --dark: #2c3333;
+  --medium: #395b64;
+  --light: #a5c9ca;
+  --bright: #e7f6f2;
+}
+
 * {
-  background-color: aqua;
+  margin: 0;
+  padding: 0;
+  font-family: ;
+}
+
+body {
+  background-color: var(--light);
+}
+
+header {
+  background-image: linear-gradient(var(--dark) 0%, var(--medium) 100%);
+  color: var(--bright);
 }
