@@ -4,3 +4,14 @@
     //start/end, datetime-tz
 var requestUrl = "https://www.eventbriteapi.com/v3/users/me/?token=JZFUF267ADFWSB3FQ7IE"
 var eventBriteApiKey = "JZFUF267ADFWSB3FQ7IE"; 
+
+fetch(requestUrl)
+.then(function (response) {
+    return response.json();
+})
+.then(function (data) {
+    // console.log('categories');
+    for (var i = 0; i < data.length; i++) {
+        console.log(data[i].categories)
+    }
+})
