@@ -16,10 +16,22 @@ body {
 }
 
 header {
-  background-image: linear-gradient(var(--dark) 0%, var(--medium) 100%);
+  background-image: linear-gradient(var(--medium) 0%, var(--dark) 100%);
   color: var(--bright);
   text-align: center;
   padding: 15px;
+}
+
+h1 {
+  font-size: 7vw;
+}
+
+header p {
+  font-size: 3vw;
+}
+
+h2 {
+  font-size: 5vw;
 }
 
 .container {
@@ -27,18 +39,44 @@ header {
   flex-direction: column;
   padding: 15px;
 }
+
+.container h2 {
+  padding: 15px;
+}
+
 .container button {
-  background-color: var(--dark);
+  background-image: linear-gradient(var(--medium) 0%, var(--dark) 100%);
   color: var(--bright);
-  font-size: 1.6vw;
+  font-size: 4vw;
   border-radius: 8px;
   margin: 15px;
   padding: 15px;
 }
 
+.container button:hover {
+  background-image: linear-gradient(var(--light) 0%, var(--medium) 100%);
+  color: var(--dark);
+  border: 2px solid var(--dark);
+}
+
 .container textarea {
   background-color: var(--bright);
   border-radius: 8px;
+  margin: 15px;
+  padding: 15px;
+  height: 20px;
+}
+
+#eventsSection {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  padding: 15px;
+}
+
+#weatherSection {
+  display: flex;
+  flex-direction: column;
   margin: 15px;
   padding: 15px;
 }
