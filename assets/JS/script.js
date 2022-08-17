@@ -1,4 +1,4 @@
-/** @format */
+// /** @format */
 
 //Sarah is taking lines 1-70
 //global variables
@@ -7,14 +7,25 @@ var requestUrl =
 var cityInput = document.querySelector("#city-input");
 var selectedCity = "";
 var apiKey = "823f12c05cfad6b99a96790ab94c7a164c5aa774017edccf89027201473d584f";
+var eventBtn = document.querySelector(".seeEvents");
 
 
 
+eventBtn.addEventListener("click", localSave, showEvents);
+
+
+function localSave() {
+  var selectedCity = JSON.stringify(cityInput); 
+  console.log(selectedCity);
+  localStorage.setItem("city", JSON.stringify(selectedCity));
+
+}
 
 
 function showEvents() {
-  selectedCity = cityInput.value;
-  var url = "https://serpapi.com/search.json?engine=google_events&q=Events+in+" + selectedCity + "&api_key=" + apiKey;
+ var retrieveCity = localStorage.getItem("city");
+ console.log(retrieveCity);
+  var url = "https://serpapi.com/search.json?engine=google_events&q=Events+in+" + retrieveCity + "&api_key=" + apiKey;
   console.log(url);
 fetch(requestUrl)
   .then(function (response) {
