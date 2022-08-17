@@ -5,9 +5,22 @@
 var requestUrl =
   "https://serpapi.com/search.json?engine=google_events&q=Events+in+Austin&api_key=823f12c05cfad6b99a96790ab94c7a164c5aa774017edccf89027201473d584f";
 var cityInput = document.querySelector("#city-input");
+var selectedCity = "";
+var apiKey = "823f12c05cfad6b99a96790ab94c7a164c5aa774017edccf89027201473d584f";
 
+
+
+
+
+function showEvents() {
+  selectedCity = cityInput.value;
+  var url = "https://serpapi.com/search.json?engine=google_events&q=Events+in+" + selectedCity + "&api_key=" + apiKey;
+  console.log(url);
 fetch(requestUrl)
   .then(function (response) {
     return response.json();
   })
- 
+ .then(function (data) {
+  console.log(data);
+ })
+}
