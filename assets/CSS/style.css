@@ -31,13 +31,17 @@ header p {
 }
 
 h2 {
-  font-size: 5vw;
+  font-size: 3vw;
 }
 
 .container {
+  float: left;
+  width: 25%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 15px;
+  border-right: solid 2px var(--dark);
 }
 
 .container h2 {
@@ -47,7 +51,7 @@ h2 {
 .container button {
   background-image: linear-gradient(var(--medium) 0%, var(--dark) 100%);
   color: var(--bright);
-  font-size: 4vw;
+  font-size: 1.5vw;
   border-radius: 8px;
   margin: 15px;
   padding: 15px;
@@ -62,6 +66,7 @@ h2 {
 .container input {
   background-color: var(--bright);
   border-radius: 8px;
+  max-width: 80%;
   margin: 15px;
   padding: 15px;
   height: 20px;
