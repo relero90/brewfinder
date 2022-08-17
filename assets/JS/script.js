@@ -6,7 +6,6 @@
 //global variables
 
 var cityInput = document.querySelector("#cityInput");
-var apiKey = "823f12c05cfad6b99a96790ab94c7a164c5aa774017edccf89027201473d584f";
 var eventBtn = document.querySelector(".seeEvents");
 
 eventBtn.addEventListener("click", localSave);
@@ -22,15 +21,13 @@ function showEvents() {
   var retrieveCity = localStorage.getItem("city");
   console.log(retrieveCity);
   var requestUrl =
-    "https://serpapi.com/search.json?engine=google_events&q=Events+in+" +
-    retrieveCity +
-    "&api_key=" +
-    apiKey;
+    "https://api.openbrewerydb.org/breweries?by_city=" +
+    retrieveCity + "&per_page=5";
   console.log(requestUrl);
   fetch(requestUrl)
     .then(function (response) {
       console.log(response);
-     return response.json();
+      return response.json();
     })
     .then(function (data) {
       console.log(data);
