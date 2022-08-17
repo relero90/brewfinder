@@ -33,6 +33,9 @@ header p {
 h2 {
   font-size: 3vw;
 }
+h3 {
+  font-size: 2vw;
+}
 
 .container {
   float: left;
@@ -45,6 +48,9 @@ h2 {
 }
 
 .container h2 {
+  padding: 15px;
+}
+.container h3 {
   padding: 15px;
 }
 
@@ -62,7 +68,11 @@ h2 {
   color: var(--dark);
   border: 2px solid var(--dark);
 }
-
+.container button:active {
+  background-image: linear-gradient(var(--dark) 0%, var(--medium) 100%);
+  color: var(--light);
+  border: 2px solid var(--dark);
+}
 .container input {
   background-color: var(--bright);
   border-radius: 8px;
