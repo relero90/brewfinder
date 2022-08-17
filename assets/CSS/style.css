@@ -59,7 +59,7 @@ h2 {
   border: 2px solid var(--dark);
 }
 
-.container textarea {
+.container input {
   background-color: var(--bright);
   border-radius: 8px;
   margin: 15px;
