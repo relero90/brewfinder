@@ -95,3 +95,7 @@ h3 {
   margin: 15px;
   padding: 15px;
 }
+
+#weatherSection .card {
+  max-width: fit-content;
+}

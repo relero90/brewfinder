@@ -11,7 +11,7 @@ var enterBtn = document.querySelector("#cityInput");
 
 //Key press Enter starts localSave function
 enterBtn.addEventListener("keydown", function (event) {
-  if (event.keyCode === 13) {
+  if (event.key === "Enter") {
     localSave();
   }
 });

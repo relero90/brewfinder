@@ -29,7 +29,7 @@ document.querySelector(".container button").addEventListener("click", function (
 });
 //Return keypress starts search function
 document.querySelector("#cityInput").addEventListener("keydown", function (event) {
-  if (event.keyCode === 13) {
+  if (event.key === "Enter") {
     weather.search();
   }
 });
