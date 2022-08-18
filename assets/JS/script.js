@@ -27,6 +27,7 @@ enterBtn.addEventListener("keydown", function (event) {
 
 eventBtn.addEventListener("click", localSave, clear);
 
+//clears previous results from showing breweries when button is clicked more than once
 function clear() {
   count++;
   console.log(count);
@@ -88,7 +89,9 @@ function showEvents() {
         typeOfBrewery.setAttribute("class", "list-group-item");
         phoneNumber.setAttribute("class", "list-group-item");
         address.setAttribute("class", "list-group-item");
-        websiteLink.setAttribute("class", "list-group-item", "href", "data[j].website_url");
+        websiteLink.setAttribute("class", "list-group-item");
+        websiteLink.setAttribute("target", "_blank");
+        websiteLink.href = data[j].website_url;
         //adding text content to each info div
         breweryName.textContent = data[j].name;
         typeOfBrewery.textContent = "Type of brewery: " + data[j].brewery_type;
