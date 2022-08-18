@@ -8,10 +8,13 @@ var eventsSection = document.querySelector("#eventsSection");
 var eventCard = document.querySelector("#eventCard");
 var eventUnorderedList = document.querySelector("#eventUnorderedList");
 // Becca added empty array to hold search history & div to append buttons
+var selectedCity = "";
 var savedCitySearches = [];
 var savedCitiesDiv = $("#saved-cities");
 var enterBtn = document.querySelector("#cityInput");
 var count = 0;
+
+var cityDisplayText = $("#cityName");
 
 //Key press Enter starts localSave function
 enterBtn.addEventListener("keydown", function (event) {
@@ -23,19 +26,20 @@ enterBtn.addEventListener("keydown", function (event) {
 //event listeners
 
 eventBtn.addEventListener("click", localSave, clear);
-  
 
-  function clear() {
-  count ++;
+function clear() {
+  count++;
   console.log(count);
   if (count > 1) {
     eventsSection.innerText = "";
-  }}
+  }
+}
 
 //saving info locally
 function localSave() {
   selectedCity = cityInput.value;
   console.log(selectedCity);
+  cityDisplayText.text(selectedCity);
   // Becca added push to populate empty array
   savedCitySearches.push(selectedCity);
   console.log(savedCitySearches);
@@ -65,7 +69,7 @@ function showEvents() {
       console.log(data);
       eventsSection.display = "inline-block";
       var eventCard = document.createElement("div");
-      eventCard.setAttribute("class", "card")
+      eventCard.setAttribute("class", "card");
       eventCard.style.width = "100%";
       eventsSection.append(eventCard);
       for (var i = 0; i < 5; i++) {
@@ -111,6 +115,10 @@ function showEvents() {
         breweryName.append(newUnorderedList);
         newUnorderedList.append(typeOfBrewery);
         newUnorderedList.append(phoneNumber);
+        var address = document.createElement("li");
+        address.setAttribute("class", "list-group-item");
+        address.textContent =
+          data[j].street + ", " + data[j].city + ", " + data[j].state;
         newUnorderedList.append(address);
         newUnorderedList.append(websiteLink);
       }
@@ -145,7 +153,7 @@ for (var i = 0; i < savedCityBtns.length; i++) {
   savedCityBtns[i].addEventListener("click", function (event) {
     var clickedBtn = event.target;
     var retrieveCity = clickedBtn.classList.value;
-
+    cityDisplayText.text(retrieveCity);
     var requestUrl =
       "https://api.openbrewerydb.org/breweries?by_city=" +
       retrieveCity +
