@@ -7,8 +7,8 @@ var eventBtn = document.querySelector(".seeEvents");
 var eventsSection = document.querySelector("#eventsSection");
 var eventCard = document.querySelector("#eventCard");
 var eventUnorderedList = document.querySelector("#eventUnorderedList");
-
 var enterBtn = document.querySelector("#cityInput");
+var count = 0;
 
 //Key press Enter starts localSave function
 enterBtn.addEventListener("keydown", function (event) {
@@ -18,7 +18,16 @@ enterBtn.addEventListener("keydown", function (event) {
 });
 
 //event listeners
-eventBtn.addEventListener("click", localSave);
+
+eventBtn.addEventListener("click", localSave, clear);
+  
+
+  function clear() {
+  count ++;
+  console.log(count);
+  if (count > 1) {
+    eventsSection.innerText = "";
+  }}
 
 //saving info locally
 function localSave() {
@@ -26,6 +35,7 @@ function localSave() {
   console.log(selectedCity);
   localStorage.setItem("city", selectedCity);
   showEvents();
+  clear();
 }
 
 function showEvents() {
@@ -68,7 +78,7 @@ function showEvents() {
         newUnorderedList.append(phoneNumber);
         var address = document.createElement("li");
         address.setAttribute("class", "list-group-item");
-        address.textContent = data[j].street + data[j].city + data[j].state;
+        address.textContent = data[j].street + ", " + data[j].city + ", " + data[j].state;
         newUnorderedList.append(address);
         var websiteLink = document.createElement("li");
         websiteLink.setAttribute("class", "list-group-item");
