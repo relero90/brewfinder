@@ -18,7 +18,8 @@
       <p>Enter a city to view events happpening during your visit</p>
     </header>
     <aside class="container">
-      <h2>City:</h2>
+      <h2 class="cityWeather">City:</h2>
+      <h3 class="dateRange">Date:</h3>
 
       <input type="text" name="cityInput" id="cityInput" />
       <button class="seeEvents">See Events</button>
@@ -27,8 +28,6 @@
       <input type="text" id="from" name="from" />
       <label for="to">to</label>
       <input type="text" id="to" name="to" />
-
-      <p>Date: <input type="text" i "></p>
 
       <!-- Jeff gets lines 21-41 -->
     </aside>
@@ -44,11 +43,15 @@
       </div>
     </section>
     <section id="weatherSection">
-      <h2 class="cityWeather">Weather</h2>
+      <h2>Weather</h2>
       <div class="card" style="width: 100%">
         <img src="#" class="card-img-top" alt="..." />
         <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="description">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="tempature"></p>
+          <p class="feels-like"></p>
+          <p class="humidity"></p>
+          <p class="wind-speed"></p>
         </div>
       </div>
     </section>

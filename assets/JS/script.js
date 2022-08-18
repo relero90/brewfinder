@@ -7,6 +7,14 @@
 
 var cityInput = document.querySelector("#cityInput");
 var eventBtn = document.querySelector(".seeEvents");
+var enterBtn = document.querySelector("#cityInput");
+
+//Key press Enter starts localSave function
+enterBtn.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    localSave();
+  }
+});
 
 eventBtn.addEventListener("click", localSave);
 
@@ -20,9 +28,7 @@ function localSave() {
 function showEvents() {
   var retrieveCity = localStorage.getItem("city");
   console.log(retrieveCity);
-  var requestUrl =
-    "https://api.openbrewerydb.org/breweries?by_city=" +
-    retrieveCity + "&per_page=5";
+  var requestUrl = "https://api.openbrewerydb.org/breweries?by_city=" + retrieveCity + "&per_page=5";
   console.log(requestUrl);
   fetch(requestUrl)
     .then(function (response) {
