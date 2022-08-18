@@ -54,21 +54,32 @@ h3 {
   padding: 15px;
 }
 
-.container button {
+.container #btn {
   background-image: linear-gradient(var(--medium) 0%, var(--dark) 100%);
   color: var(--bright);
+  width: 85%;
   font-size: 1.5vw;
   border-radius: 8px;
   margin: 15px;
   padding: 15px;
 }
 
-.container button:hover {
+#btn-2 {
+  background-image: linear-gradient(var(--light) 0%, var(--medium) 100%);
+  color: var(--dark);
+  width: 85%;
+  font-size: 1.5vw;
+  border-radius: 8px;
+  margin: 15px;
+  padding: 15px;
+}
+
+.container #btn:hover {
   background-image: linear-gradient(var(--light) 0%, var(--medium) 100%);
   color: var(--dark);
   border: 2px solid var(--dark);
 }
-.container button:active {
+.container #btn:active {
   background-image: linear-gradient(var(--dark) 0%, var(--medium) 100%);
   color: var(--light);
   border: 2px solid var(--dark);
