@@ -8,6 +8,15 @@ var eventsSection = document.querySelector("#eventsSection");
 var eventCard = document.querySelector("#eventCard");
 var eventUnorderedList = document.querySelector("#eventUnorderedList");
 
+var enterBtn = document.querySelector("#cityInput");
+
+//Key press Enter starts localSave function
+enterBtn.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    localSave();
+  }
+});
+
 //event listeners
 eventBtn.addEventListener("click", localSave);
 
@@ -62,6 +71,7 @@ function showEvents() {
       }
     });
 }
+
 
 //https://ridb.recreation.gov/api/v1/campsites?limit=50&offset=0&api_key=751f29a1-ede4-455b-81ff-495611b01b48
 //link for the government api that im waiting on
