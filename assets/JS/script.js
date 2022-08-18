@@ -70,31 +70,48 @@ function showEvents() {
       eventsSection.append(eventCard);
       for (var i = 0; i < 5; i++) {
         var j = Math.floor(Math.random() * data.length);
-        if ( data[j].street == null) {
-          data[j].street.innerText= "none listed";
-        }
+        //addresses that have "null" won't sho
+        //creating dynamic elements to nest info in
+        var newUnorderedList = document.createElement("ul");
         var breweryName = document.createElement("div");
-          var newUnorderedList = document.createElement("ul");
-        breweryName.setAttribute("class", "card-header");
-        breweryName.textContent = data[j].name;
-        eventCard.append(breweryName);
         var typeOfBrewery = document.createElement("li");
-        newUnorderedList.setAttribute("class", "list-group list-group-flush");
-        breweryName.append(newUnorderedList);
-        typeOfBrewery.setAttribute("class", "list-group-item");
-        typeOfBrewery.textContent = data[j].brewery_type;
-        newUnorderedList.append(typeOfBrewery);
         var phoneNumber = document.createElement("li");
-        phoneNumber.setAttribute("class", "list-group-item");
-        phoneNumber.textContent = data[j].phone;
-        newUnorderedList.append(phoneNumber);
         var address = document.createElement("li");
-        address.setAttribute("class", "list-group-item");
-        address.textContent = data[j].street + " " + data[j].city + ", " + data[j].state;
-        newUnorderedList.append(address);
         var websiteLink = document.createElement("a");
+        //setting bootstrap classes to make format better
+        newUnorderedList.setAttribute("class", "list-group list-group-flush");
+        breweryName.setAttribute("class", "card-header");
+        typeOfBrewery.setAttribute("class", "list-group-item");
+        phoneNumber.setAttribute("class", "list-group-item");
+        address.setAttribute("class", "list-group-item");
         websiteLink.setAttribute("class", "list-group-item", "href", "data[j].website_url");
-        websiteLink.textContent = data[j].website_url;
+        //adding text content to each info div
+        breweryName.textContent = data[j].name;
+        typeOfBrewery.textContent = "Type of brewery: " + data[j].brewery_type;
+        //if there's no phone number listed, it will return none instead of null
+        if (data[j].phone == null) {
+          phoneNumber.innerText = "Phone: none listed";
+        } else {
+          phoneNumber.innerText = "Phone: " + data[j].phone;
+        }
+        //if there's no address, it'll return none listed instead of nothing
+        if ( data[j].street == null) {
+          address.innerText= "Address: none listed";
+        } else {
+          address.innerText = "Address: " + data[j].street + " " + data[j].city + ", " + data[j].state;
+        }
+        //if there's no website, it'll display none listed instead of nothing
+        if (data[j].website_url == null) {
+          websiteLink.innerText = "Website: none listed"
+        } else {
+          websiteLink.innerText = "Website: " + data[j].website_url;
+        }
+        //appending
+        eventCard.append(breweryName);
+        breweryName.append(newUnorderedList);
+        newUnorderedList.append(typeOfBrewery);
+        newUnorderedList.append(phoneNumber);
+        newUnorderedList.append(address);
         newUnorderedList.append(websiteLink);
       }
       return;
