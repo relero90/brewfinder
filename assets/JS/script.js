@@ -115,6 +115,8 @@ function showEvents() {
         breweryName.append(newUnorderedList);
         newUnorderedList.append(typeOfBrewery);
         newUnorderedList.append(phoneNumber);
+        var address = document.createElement("li");
+        address.setAttribute("class", "list-group-item");
         address.textContent =
           data[j].street + ", " + data[j].city + ", " + data[j].state;
         newUnorderedList.append(address);
