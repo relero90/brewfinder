@@ -44,6 +44,11 @@ function showEvents() {
     })
     .then(function (data) {
       console.log(data);
+      eventsSection.display = "inline-block";
+      var eventCard = document.createElement("div");
+      eventCard.setAttribute("class", "card")
+      eventCard.style.width = "100%";
+      eventsSection.append(eventCard);
       for (var i = 0; i < 5; i++) {
         var j = Math.floor(Math.random() * data.length);
         var breweryName = document.createElement("div");
