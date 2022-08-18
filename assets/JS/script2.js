@@ -17,7 +17,7 @@ var weather = {
     // console.log(name, icon, description, temp, humidity, speed);
 
     //Display Weather data in the weather card
-    document.querySelector(".cityWeather").innerText = "City: " + name;
+    document.querySelector(".cityWeather").innerText = "Breweries in " + name;
     document.querySelector(".card-img-top").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
     document.querySelector(".description").innerText = description;
     document.querySelector(".tempature").innerText = "Tempature : " + temp + "°F";

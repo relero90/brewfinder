@@ -82,6 +82,11 @@ h3 {
   height: 20px;
 }
 
+.cityWeather, .dateRange {
+  color: var(--dark);
+  font-weight: bolder;
+}
+
 #eventsSection {
   display: flex;
   flex-direction: column;
