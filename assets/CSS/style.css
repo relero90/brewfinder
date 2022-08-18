@@ -100,10 +100,12 @@ h3 {
 
 .card {
   background-color: var(--medium);
+  box-shadow: 6px 8px #7f9c9d;
 }
 
 .card-header {
   color: var(--bright);
+  text-decoration: underline;
 }
 
 #eventsSection {
