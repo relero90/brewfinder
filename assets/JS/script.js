@@ -72,6 +72,22 @@ function showEvents() {
     });
 }
 
-
 //https://ridb.recreation.gov/api/v1/campsites?limit=50&offset=0&api_key=751f29a1-ede4-455b-81ff-495611b01b48
 //link for the government api that im waiting on
+
+// Still in progress - need to rework local storage to be an array so it doesn't overwrite itself
+var savedCitiesDiv = $("#saved-cities");
+function renderSearchHistory() {
+  var pulledSearch = JSON.parse(localStorage.getItem("city"));
+  if (pulledSearch !== null) {
+    // For each item in the pulledCities array,
+    for (var i = 0; i < pulledCities.length; i++) {
+      var savedCity = document.createElement("button");
+      savedCity.textContent = pulledSearch[i];
+      savedCity.classList.add(pulledSearch[i]);
+      savedCity.setAttribute("data-index", i);
+      savedCitiesDiv.append(savedCity);
+    }
+  }
+}
+// renderSearchHistory();
