@@ -26,26 +26,24 @@
   <body>
     <header>
       <h1>Travel Planner</h1>
-      <p>Enter a city to view events happpening during your visit</p>
+      <p>Enter a city to view events happening during your visit</p>
     </header>
     <aside class="container">
-      <label for="cityInput">Enter a city:</label>
+      <label for="cityInput">Enter a city</label>
       <input type="text" name="cityInput" id="cityInput" />
-      
-
-      <label for="from">From:</label>
+      <label for="from">From</label>
       <input type="text" id="from" name="from" />
-      <label for="to">To:</label>
+      <label for="to">To</label>
       <input type="text" id="to" name="to" />
+      <button class="seeEvents" id="btn">See Events</button>
+      <hr />
       <div id="saved-cities"></div>
-      <button class="seeEvents">See Events</button>
-
-      <!-- Jeff gets lines 21-41 -->
     </aside>
     <section id="eventsSection">
       <h2 class="cityWeather"></h2>
       <h3 class="dateRange"></h3>
       <div class="card" style="width: 100%; display: none;" id="eventCard">
+
     </section>
     <section id="weatherSection">
       <h2>Weather</h2>
