@@ -45,7 +45,6 @@ function showEvents() {
     "https://api.openbrewerydb.org/breweries?by_city=" +
     retrieveCity +
     "&per_page=100";
-
   console.log(requestUrl);
   fetch(requestUrl)
     .then(function (response) {
@@ -61,12 +60,15 @@ function showEvents() {
       eventsSection.append(eventCard);
       for (var i = 0; i < 5; i++) {
         var j = Math.floor(Math.random() * data.length);
+        if ( data[j].street == null) {
+          data[j].street.innerText= "none listed";
+        }
         var breweryName = document.createElement("div");
+          var newUnorderedList = document.createElement("ul");
         breweryName.setAttribute("class", "card-header");
         breweryName.textContent = data[j].name;
         eventCard.append(breweryName);
         var typeOfBrewery = document.createElement("li");
-        var newUnorderedList = document.createElement("ul");
         newUnorderedList.setAttribute("class", "list-group list-group-flush");
         breweryName.append(newUnorderedList);
         typeOfBrewery.setAttribute("class", "list-group-item");
@@ -78,10 +80,10 @@ function showEvents() {
         newUnorderedList.append(phoneNumber);
         var address = document.createElement("li");
         address.setAttribute("class", "list-group-item");
-        address.textContent = data[j].street + ", " + data[j].city + ", " + data[j].state;
+        address.textContent = data[j].street + " " + data[j].city + ", " + data[j].state;
         newUnorderedList.append(address);
-        var websiteLink = document.createElement("li");
-        websiteLink.setAttribute("class", "list-group-item");
+        var websiteLink = document.createElement("a");
+        websiteLink.setAttribute("class", "list-group-item", "href", "data[j].website_url");
         websiteLink.textContent = data[j].website_url;
         newUnorderedList.append(websiteLink);
       }
