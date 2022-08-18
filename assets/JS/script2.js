@@ -26,7 +26,7 @@ var weather = {
       "http://openweathermap.org/img/wn/" + icon + "@2x.png";
     document.querySelector(".description").innerText = description;
     document.querySelector(".tempature").innerText =
-      "Tempature : " + temp + "°F";
+      "Temperature : " + temp + "°F";
     document.querySelector(".feels-like").innerText =
       "Feels Like : " + feels_like + "°F";
     document.querySelector(".humidity").innerText =
