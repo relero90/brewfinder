@@ -29,22 +29,22 @@
       <p>Enter a city to view events happpening during your visit</p>
     </header>
     <aside class="container">
-      <h2 class="cityWeather">City:</h2>
-      <h3 class="dateRange">Date:</h3>
-
+      <label for="cityName">Enter a city:</label>
       <input type="text" name="cityInput" id="cityInput" />
-      <button class="seeEvents">See Events</button>
+      
 
       <label for="from">From</label>
       <input type="text" id="from" name="from" />
       <label for="to">to</label>
       <input type="text" id="to" name="to" />
       <div id="saved-cities"></div>
+      <button class="seeEvents">See Events</button>
 
       <!-- Jeff gets lines 21-41 -->
     </aside>
     <section id="eventsSection">
-      <h2>Breweries in the Area</h2>
+      <h2 class="cityWeather">City:</h2>
+      <h3 class="dateRange">Date:</h3>
       <div class="card" style="width: 100%" id="eventCard">
         <div class="card-header">Featured</div>
         <ul class="list-group list-group-flush" id="eventUnorderedList">

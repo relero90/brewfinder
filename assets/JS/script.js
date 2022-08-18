@@ -34,7 +34,7 @@ function showEvents() {
   var requestUrl =
     "https://api.openbrewerydb.org/breweries?by_city=" +
     retrieveCity +
-    "&per_page=5";
+    "&per_page=100";
 
   console.log(requestUrl);
   fetch(requestUrl)
@@ -44,31 +44,33 @@ function showEvents() {
     })
     .then(function (data) {
       console.log(data);
-      for (var i = 0; i < data.length; i++) {
+      for (var i = 0; i < 5; i++) {
+        var j = Math.floor(Math.random() * data.length);
         var breweryName = document.createElement("div");
         breweryName.setAttribute("class", "card-header");
-        breweryName.textContent = data[i].name;
+        breweryName.textContent = data[j].name;
         eventCard.append(breweryName);
         var typeOfBrewery = document.createElement("li");
         var newUnorderedList = document.createElement("ul");
         newUnorderedList.setAttribute("class", "list-group list-group-flush");
         breweryName.append(newUnorderedList);
         typeOfBrewery.setAttribute("class", "list-group-item");
-        typeOfBrewery.textContent = data[i].brewery_type;
+        typeOfBrewery.textContent = data[j].brewery_type;
         newUnorderedList.append(typeOfBrewery);
         var phoneNumber = document.createElement("li");
         phoneNumber.setAttribute("class", "list-group-item");
-        phoneNumber.textContent = data[i].phone;
+        phoneNumber.textContent = data[j].phone;
         newUnorderedList.append(phoneNumber);
         var address = document.createElement("li");
         address.setAttribute("class", "list-group-item");
-        address.textContent = data[i].street + data[i].city + data[i].state;
+        address.textContent = data[j].street + data[j].city + data[j].state;
         newUnorderedList.append(address);
         var websiteLink = document.createElement("li");
         websiteLink.setAttribute("class", "list-group-item");
-        websiteLink.textContent = data[i].website_url;
+        websiteLink.textContent = data[j].website_url;
         newUnorderedList.append(websiteLink);
       }
+      return;
     });
 }
 
