@@ -13,11 +13,17 @@ var weather = {
     var { icon, description } = data.weather[0];
     var { temp, humidity } = data.main;
     var { speed } = data.wind;
+    var { feels_like } = data.main;
     // console.log(name, icon, description, temp, humidity, speed);
+
     //Display Weather data in the weather card
     document.querySelector(".cityWeather").innerText = "City: " + name;
     document.querySelector(".card-img-top").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-    document.querySelector(".card-text").innerText = "Tempature " + temp + "°F";
+    document.querySelector(".description").innerText = description;
+    document.querySelector(".tempature").innerText = "Tempature : " + temp + "°F";
+    document.querySelector(".feels-like").innerText = "Feels Like : " + feels_like + "°F";
+    document.querySelector(".humidity").innerText = "Humidity : " + humidity + "%";
+    document.querySelector(".wind-speed").innerText = "Wind Speed : " + speed + "mph";
   },
   search: function () {
     weather.fetchWeather(document.querySelector("#cityInput").value);
