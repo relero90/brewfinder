@@ -22,6 +22,13 @@ header {
   padding: 15px;
 }
 
+img {
+  width: 100%;
+  height: auto;
+  position: sticky;
+  top: 0;
+}
+
 h1 {
   font-size: 7vw;
 }
@@ -93,17 +100,24 @@ h3 {
   height: 20px;
 }
 
-.cityWeather, .dateRange {
+.cityWeather,
+.dateRange {
   color: var(--dark);
   font-weight: bolder;
 }
 
 .card {
   background-color: var(--medium);
+  box-shadow:
+  2.5px 3.1px 21.1px rgba(0, 0, 0, 0.21),
+  6.9px 8.5px 30.9px rgba(0, 0, 0, 0.313),
+  16.6px 20.5px 43.8px rgba(0, 0, 0, 0.382),
+  55px 68px 80px rgba(0, 0, 0, 0.42);
 }
 
 .card-header {
   color: var(--bright);
+  text-decoration: underline;
 }
 
 #eventsSection {
@@ -122,4 +136,8 @@ h3 {
 
 #weatherSection .card {
   max-width: fit-content;
+}
+
+.hide {
+  display: none;
 }

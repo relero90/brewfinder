@@ -27,6 +27,7 @@ enterBtn.addEventListener("keydown", function (event) {
 
 eventBtn.addEventListener("click", localSave, clear);
 
+//clears previous results from showing breweries when button is clicked more than once
 function clear() {
   count++;
   console.log(count);
@@ -43,6 +44,12 @@ function localSave() {
   // Becca added push to populate empty array
   savedCitySearches.push(selectedCity);
   console.log(savedCitySearches);
+  var savedCity = document.createElement("button");
+  savedCity.textContent = selectedCity;
+  savedCity.classList.add(selectedCity);
+  savedCity.setAttribute("data-index", i);
+  savedCity.setAttribute("id", "btn-2");
+  savedCitiesDiv.append(savedCity);
   // Becca sent array to localStorage
   var storedStringInput = JSON.stringify(savedCitySearches);
   localStorage.setItem("savedCitiesString", storedStringInput);
@@ -59,7 +66,6 @@ function showEvents() {
     "https://api.openbrewerydb.org/breweries?by_city=" +
     retrieveCity +
     "&per_page=100";
-
   console.log(requestUrl);
   fetch(requestUrl)
     .then(function (response) {
@@ -75,29 +81,60 @@ function showEvents() {
       eventsSection.append(eventCard);
       for (var i = 0; i < 5; i++) {
         var j = Math.floor(Math.random() * data.length);
-        var breweryName = document.createElement("div");
-        breweryName.setAttribute("class", "card-header");
-        breweryName.textContent = data[j].name;
-        eventCard.append(breweryName);
-        var typeOfBrewery = document.createElement("li");
+        //addresses that have "null" won't sho
+        //creating dynamic elements to nest info in
         var newUnorderedList = document.createElement("ul");
-        newUnorderedList.setAttribute("class", "list-group list-group-flush");
-        breweryName.append(newUnorderedList);
-        typeOfBrewery.setAttribute("class", "list-group-item");
-        typeOfBrewery.textContent = data[j].brewery_type;
-        newUnorderedList.append(typeOfBrewery);
+        var breweryName = document.createElement("div");
+        var typeOfBrewery = document.createElement("li");
         var phoneNumber = document.createElement("li");
+        var address = document.createElement("li");
+        var websiteLink = document.createElement("a");
+        //setting bootstrap classes to make format better
+        newUnorderedList.setAttribute("class", "list-group list-group-flush");
+        breweryName.setAttribute("class", "card-header");
+        typeOfBrewery.setAttribute("class", "list-group-item");
         phoneNumber.setAttribute("class", "list-group-item");
-        phoneNumber.textContent = data[j].phone;
+        address.setAttribute("class", "list-group-item");
+        websiteLink.setAttribute("class", "list-group-item");
+        websiteLink.setAttribute("target", "_blank");
+        websiteLink.href = data[j].website_url;
+        //adding text content to each info div
+        breweryName.textContent = data[j].name;
+        typeOfBrewery.textContent = "Type of brewery: " + data[j].brewery_type;
+        //if there's no phone number listed, it will return none instead of null
+        if (data[j].phone == null) {
+          phoneNumber.innerText = "Phone: none listed";
+        } else {
+          phoneNumber.innerText = "Phone: " + data[j].phone;
+        }
+        //if there's no address, it'll return none listed instead of nothing
+        if (data[j].street == null) {
+          address.innerText = "Address: none listed";
+        } else {
+          address.innerText =
+            "Address: " +
+            data[j].street +
+            " " +
+            data[j].city +
+            ", " +
+            data[j].state;
+        }
+        //if there's no website, it'll display none listed instead of nothing
+        if (data[j].website_url == null) {
+          websiteLink.innerText = "Website: none listed";
+        } else {
+          websiteLink.innerText = "Website: " + data[j].website_url;
+        }
+        //appending
+        eventCard.append(breweryName);
+        breweryName.append(newUnorderedList);
+        newUnorderedList.append(typeOfBrewery);
         newUnorderedList.append(phoneNumber);
         var address = document.createElement("li");
         address.setAttribute("class", "list-group-item");
         address.textContent =
           data[j].street + ", " + data[j].city + ", " + data[j].state;
         newUnorderedList.append(address);
-        var websiteLink = document.createElement("li");
-        websiteLink.setAttribute("class", "list-group-item");
-        websiteLink.textContent = data[j].website_url;
         newUnorderedList.append(websiteLink);
       }
       return;
@@ -126,7 +163,6 @@ function renderSearchHistory() {
 renderSearchHistory();
 
 var savedCityBtns = document.querySelectorAll("#btn-2");
-
 for (var i = 0; i < savedCityBtns.length; i++) {
   savedCityBtns[i].addEventListener("click", function (event) {
     var clickedBtn = event.target;
@@ -144,30 +180,68 @@ for (var i = 0; i < savedCityBtns.length; i++) {
       })
       .then(function (data) {
         console.log(data);
+        eventsSection.display = "inline-block";
+        var eventCard = document.createElement("div");
+        eventCard.setAttribute("class", "card");
+        eventCard.style.width = "100%";
+        eventsSection.append(eventCard);
         for (var i = 0; i < 5; i++) {
           var j = Math.floor(Math.random() * data.length);
-          var breweryName = document.createElement("div");
-          breweryName.setAttribute("class", "card-header");
-          breweryName.textContent = data[j].name;
-          eventCard.append(breweryName);
-          var typeOfBrewery = document.createElement("li");
+          //addresses that have "null" won't sho
+          //creating dynamic elements to nest info in
           var newUnorderedList = document.createElement("ul");
-          newUnorderedList.setAttribute("class", "list-group list-group-flush");
-          breweryName.append(newUnorderedList);
-          typeOfBrewery.setAttribute("class", "list-group-item");
-          typeOfBrewery.textContent = data[j].brewery_type;
-          newUnorderedList.append(typeOfBrewery);
+          var breweryName = document.createElement("div");
+          var typeOfBrewery = document.createElement("li");
           var phoneNumber = document.createElement("li");
+          var address = document.createElement("li");
+          var websiteLink = document.createElement("a");
+          //setting bootstrap classes to make format better
+          newUnorderedList.setAttribute("class", "list-group list-group-flush");
+          breweryName.setAttribute("class", "card-header");
+          typeOfBrewery.setAttribute("class", "list-group-item");
           phoneNumber.setAttribute("class", "list-group-item");
-          phoneNumber.textContent = data[j].phone;
+          address.setAttribute("class", "list-group-item");
+          websiteLink.setAttribute("class", "list-group-item");
+          websiteLink.setAttribute("target", "_blank");
+          websiteLink.href = data[j].website_url;
+          //adding text content to each info div
+          breweryName.textContent = data[j].name;
+          typeOfBrewery.textContent =
+            "Type of brewery: " + data[j].brewery_type;
+          //if there's no phone number listed, it will return none instead of null
+          if (data[j].phone == null) {
+            phoneNumber.innerText = "Phone: none listed";
+          } else {
+            phoneNumber.innerText = "Phone: " + data[j].phone;
+          }
+          //if there's no address, it'll return none listed instead of nothing
+          if (data[j].street == null) {
+            address.innerText = "Address: none listed";
+          } else {
+            address.innerText =
+              "Address: " +
+              data[j].street +
+              " " +
+              data[j].city +
+              ", " +
+              data[j].state;
+          }
+          //if there's no website, it'll display none listed instead of nothing
+          if (data[j].website_url == null) {
+            websiteLink.innerText = "Website: none listed";
+          } else {
+            websiteLink.innerText = "Website: " + data[j].website_url;
+          }
+          //appending
+          eventCard.append(breweryName);
+          breweryName.append(newUnorderedList);
+          newUnorderedList.append(typeOfBrewery);
           newUnorderedList.append(phoneNumber);
           var address = document.createElement("li");
           address.setAttribute("class", "list-group-item");
-          address.textContent = data[j].street + data[j].city + data[j].state;
+          address.textContent =
+            data[j].street + ", " + data[j].city + ", " + data[j].state;
           newUnorderedList.append(address);
-          var websiteLink = document.createElement("li");
-          websiteLink.setAttribute("class", "list-group-item");
-          websiteLink.textContent = data[j].website_url;
           newUnorderedList.append(websiteLink);
         }
         return;
