@@ -59,7 +59,7 @@ function localSave() {
   // prepend adds the button as the first child of savedCitiesDiv
   savedCitiesDiv.prepend(savedCity);
   // removes the 6th button element to limit the number shown
-  savedCitiesDiv.children().eq(5).remove();
+  savedCitiesDiv.children().eq(8).remove();
   // Becca sent array to localStorage
   var storedStringInput = JSON.stringify(savedCitySearches);
   localStorage.setItem("savedCitiesString", storedStringInput);
