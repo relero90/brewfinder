@@ -1,57 +1,106 @@
+var states = {
+  AL: "ALABAMA",
+  AK: "ALASKA",
+  AS: "AMERICAN SAMOA",
+  AZ: "ARIZONA",
+  AR: "ARKANSAS",
+  CA: "CALIFORNIA",
+  CO: "COLORADO",
+  CT: "CONNECTICUT",
+  DE: "DELAWARE",
+  DC: "DISTRICT OF COLUMBIA",
+  FM: "FEDERATED STATES OF MICRONESIA",
+  FL: "FLORIDA",
+  GA: "GEORGIA",
+  GU: "GUAM GU",
+  HI: "HAWAII",
+  ID: "IDAHO",
+  IL: "ILLINOIS",
+  IN: "INDIANA",
+  IA: "IOWA",
+  KS: "KANSAS",
+  KY: "KENTUCKY",
+  LA: "LOUISIANA",
+  ME: "MAINE",
+  MH: "MARSHALL ISLANDS",
+  MD: "MARYLAND",
+  MA: "MASSACHUSETTS",
+  MI: "MICHIGAN",
+  MN: "MINNESOTA",
+  MS: "MISSISSIPPI",
+  MO: "MISSOURI",
+  MT: "MONTANA",
+  NE: "NEBRASKA",
+  NV: "NEVADA",
+  NH: "NEW HAMPSHIRE",
+  NJ: "NEW JERSEY",
+  NM: "NEW MEXICO",
+  NY: "NEW YORK",
+  NC: "NORTH CAROLINA",
+  ND: "NORTH DAKOTA",
+  MP: "NORTHERN MARIANA ISLANDS",
+  OH: "OHIO",
+  OK: "OKLAHOMA",
+  OR: "OREGON",
+  PW: "PALAU",
+  PA: "PENNSYLVANIA",
+  PR: "PUERTO RICO",
+  RI: "RHODE ISLAND",
+  SC: "SOUTH CAROLINA",
+  SD: "SOUTH DAKOTA",
+  TN: "TENNESSEE",
+  TX: "TEXAS",
+  UT: "UTAH",
+  VT: "VERMONT",
+  VI: "VIRGIN ISLANDS",
+  VA: "VIRGINIA",
+  WA: "WASHINGTON",
+  WV: "WEST VIRGINIA",
+  WI: "WISCONSIN",
+  WY: "WYOMING",
+};
+
 //object to show weather
 var weather = {
   APIkey: "501721a232530766e41f1ad70cfed92b",
   //Call weather based on city defined
   fetchWeather: function (city) {
-    fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
-        city +
-        "&units=imperial&appid=" +
-        weather.APIkey
-    )
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + weather.APIkey)
       .then((response) => response.json())
       .then((data) => weather.displayWeather(data));
   },
   // Call var from Object to display in console
   displayWeather: function (data) {
-    var { name } = data;
-    var { icon, description } = data.weather[0];
-    var { temp, humidity } = data.main;
-    var { speed } = data.wind;
-    var { feels_like } = data.main;
+    var { icon, description } = data.list[0].weather[0];
+    var { temp, humidity } = data.list[0].main;
+    var { speed } = data.list[0].wind;
+    var { feels_like } = data.list[0].main;
+    // var { dt_txt } = data.list[0]
     // console.log(name, icon, description, temp, humidity, speed);
 
     //Display Weather data in the weather card
-    document.querySelector(".card-img-top").src =
-      "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    document.querySelector(".card-img-top").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
     document.querySelector(".description").innerText = description;
-    document.querySelector(".tempature").innerText =
-      "Temperature : " + temp + "°F";
-    document.querySelector(".feels-like").innerText =
-      "Feels Like : " + feels_like + "°F";
-    document.querySelector(".humidity").innerText =
-      "Humidity : " + humidity + "%";
-    document.querySelector(".wind-speed").innerText =
-      "Wind Speed : " + speed + "mph";
+    // document.querySelector(".dateText").innerText = dt_txt;
+    document.querySelector(".tempature").innerText = "Tempature : " + temp + "°F";
+    document.querySelector(".feels-like").innerText = "Feels Like : " + feels_like + "°F";
+    document.querySelector(".humidity").innerText = "Humidity : " + humidity + "%";
+    document.querySelector(".wind-speed").innerText = "Wind Speed : " + speed + "mph";
   },
   search: function () {
     weather.fetchWeather(document.querySelector("#cityInput").value);
   },
 };
 //search button from users input
-document
-  .querySelector(".container button")
-  .addEventListener("click", function () {
-    weather.search();
-  });
+document.querySelector(".container button").addEventListener("click", function () {
+  weather.search();
+});
 //Return keypress starts search function
-document
-  .querySelector("#cityInput")
-  .addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      weather.search();
-    }
-  });
+document.querySelector("#cityInput").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    weather.search();
+  }
+});
 
 //date picker
 $(function () {
@@ -88,5 +137,6 @@ $(function () {
       date = null;
     }
     return date;
+    console.log(date);
   }
 });
