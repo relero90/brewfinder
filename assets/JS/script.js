@@ -45,7 +45,7 @@ function localSave() {
   cityConcat = selectedCity.replace(/\s/g, "+");
   // console.log(cityConcat);
 
-  cityDisplayText.text(selectedCity);
+  cityDisplayText.textContent = selectedCity;
   // Becca added push to populate empty array
   savedCitySearches.push(selectedCity);
   console.log(savedCitySearches);
