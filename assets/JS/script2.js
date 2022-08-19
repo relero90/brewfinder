@@ -71,63 +71,71 @@ var weather = {
   },
   // Call var from Object to display in console
   displayWeather: function (data) {
-    var dataList = data.list;
-    var newWeatherCard = document.createElement("div");
-    newWeatherCard.setAttribute("class", "card");
-    newWeatherCard.style.width = "100%";
-    weatherSection.append(newWeatherCard);
+    for (var i = 0; i <= 35; i += 8) {
+      var dataList = data.list[i];
+      var newWeatherCard = document.createElement("div");
+      newWeatherCard.setAttribute("class", "card");
+      // newWeatherCard.style.width = "100%";
+      weatherSection.append(newWeatherCard);
 
-    var weatherCardBody = document.createElement("div");
-    weatherCardBody.setAttribute("class", "card-body");
-    newWeatherCard.append(weatherCardBody);
+      var weatherCardBody = document.createElement("div");
+      weatherCardBody.setAttribute("class", "card-body");
+      newWeatherCard.append(weatherCardBody);
 
-    //Create p tags to display weather conditions
-    var newCardIcon = document.createElement("img");
-    newCardIcon.setAttribute("class", "card-img-top");
-    weatherCardBody.append(newCardIcon);
+      //Create p tags to display weather conditions
+      var newCardIcon = document.createElement("img");
+      newCardIcon.setAttribute("class", "card-img-top");
+      weatherCardBody.append(newCardIcon);
 
-    var newDescription = document.createElement("p");
-    newDescription.setAttribute("class", "description");
-    weatherCardBody.append(newDescription);
+      var newDescription = document.createElement("p");
+      newDescription.setAttribute("class", "description");
+      weatherCardBody.append(newDescription);
 
-    var newDateText = document.createElement("p");
-    newDateText.setAttribute("class", "dateText");
-    weatherCardBody.append(newDateText);
+      var newDateText = document.createElement("p");
+      newDateText.setAttribute("class", "dateText");
+      weatherCardBody.append(newDateText);
 
-    var newTemp = document.createElement("p");
-    newTemp.setAttribute("class", "temperature");
-    weatherCardBody.append(newTemp);
+      var newTemp = document.createElement("p");
+      newTemp.setAttribute("class", "temperature");
+      weatherCardBody.append(newTemp);
 
-    var newFeelsLike = document.createElement("p");
-    newFeelsLike.setAttribute("class", "feels-like");
-    weatherCardBody.append(newFeelsLike);
+      var newFeelsLike = document.createElement("p");
+      newFeelsLike.setAttribute("class", "feels-like");
+      weatherCardBody.append(newFeelsLike);
 
-    var newHumidity = document.createElement("p");
-    newHumidity.setAttribute("class", "humidity");
-    weatherCardBody.append(newHumidity);
+      var newHumidity = document.createElement("p");
+      newHumidity.setAttribute("class", "humidity");
+      weatherCardBody.append(newHumidity);
 
-    var newWindSpeed = document.createElement("p");
-    newWindSpeed.setAttribute("class", "wind-speed");
-    weatherCardBody.append(newWindSpeed);
-    // for (var i = 0; i <= 40; i+=8){}
+      var newWindSpeed = document.createElement("p");
+      newWindSpeed.setAttribute("class", "wind-speed");
+      weatherCardBody.append(newWindSpeed);
 
-    // document.body.children["appBody"].children["weatherSection"].createElement("div");
-    //Weather conditions
-    var { icon, description } = dataList[i].weather[0];
-    var { dt_txt } = dataList[i];
-    var { temp, humidity } = dataList[i].main;
-    var { speed } = dataList[i].wind;
-    var { feels_like } = dataList[i].main;
-    // console.log(name, icon, description, temp, humidity, speed);
+      // document.body.children["appBody"].children["weatherSection"].createElement("div");
+      //Weather conditions
+      var { icon, description } = dataList.weather[0];
+      var { dt_txt } = dataList;
+      var { temp, humidity } = dataList.main;
+      var { speed } = dataList.wind;
+      var { feels_like } = dataList.main;
+      // console.log(name, icon, description, temp, humidity, speed);
 
-    //Display Weather data in the weather card
-    document.querySelector(".card-img-top").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-    document.querySelector(".description").innerText = description;
-    document.querySelector(".dateText").innerText = dt_txt;
-    document.querySelector(".temperature").innerText = "temperature : " + temp + "°F";
-    document.querySelector(".feels-like").innerText = "Feels Like : " + feels_like + "°F";
-    document.querySelector(".humidity").innerText = "Humidity : " + humidity + "%";
-    document.querySelector(".wind-speed").innerText = "Wind Speed : " + speed + "mph";
+      //Display Weather data in the weather card
+      // document.querySelector(".card-img-top").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+      newCardIcon.setAttribute("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png");
+      // document.querySelector(".description").innerText = description;
+      newDescription.innerText = description;
+      // document.querySelector(".dateText").innerText = dt_txt;
+      newDateText.innerText = dt_txt;
+      // document.querySelector(".temperature").innerText = "Temperature : " + temp + "°F";
+      newTemp.innerText = "Temperature : " + temp + "°F";
+      // document.querySelector(".feels-like").innerText = "Feels Like : " + feels_like + "°F";
+      newFeelsLike.innerText = "Feels Like : " + feels_like + "°F";
+      // document.querySelector(".humidity").innerText = "Humidity : " + humidity + "%";
+      newHumidity.innerText = "Humidity : " + humidity + "%";
+      // document.querySelector(".wind-speed").innerText = "Wind Speed : " + speed + "mph";
+      newWindSpeed.innerText = "Wind Speed : " + speed + "mph";
+    }
   },
   search: function () {
     weather.fetchWeather(document.querySelector("#cityInput").value);
