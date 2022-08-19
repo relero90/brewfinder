@@ -11,5 +11,11 @@ var showHistoryEl = document.getElementById("showHistory");
 var savedCitiesEl = document.getElementById("saved-cities");
 
 showHistoryEl.addEventListener('click', function(){
-savedCitiesEl.setAttribute('style', 'display: block;');
+  if (savedCitiesEl.style.display === '') {
+    savedCitiesEl.setAttribute('style', 'display: block;');
+  } else if (savedCitiesEl.style.display === 'block') {
+    savedCitiesEl.setAttribute('style', 'display: none;');
+  } else {
+    savedCitiesEl.setAttribute('style', 'display: block;');
+  }
 })
