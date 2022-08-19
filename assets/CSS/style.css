@@ -154,6 +154,16 @@ h3 {
   display: none;
 }
 
+#showHistory {
+  background-image: linear-gradient(var(--light) 0%, var(--medium) 100%);
+  color: var(--dark);
+  width: 85%;
+  font-size: 1.5vw;
+  border-radius: 8px;
+  margin: 15px;
+  padding: 15px;
+}
+
 /* media queries for a responsive mobile view */
 @media screen and (max-width: 768px) {
   .container {
@@ -161,8 +171,18 @@ h3 {
   border-right: 0px;
   align-items: center;
  }
+
  .breweriesDiv {
   width: 100%;
  }
 
+ #saved-cities {
+  display: none;
+ }
+}
+
+@media screen and (min-width: 769px) {
+  #showHistory {
+    display: none;
+  }
 }
