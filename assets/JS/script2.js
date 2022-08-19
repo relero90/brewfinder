@@ -59,7 +59,7 @@ var states = {
   WI: "WISCONSIN",
   WY: "WYOMING",
 };
-
+var weatherSection = document.querySelector("#weatherSection");
 //object to show weather
 var weather = {
   APIkey: "501721a232530766e41f1ad70cfed92b",
@@ -71,11 +71,53 @@ var weather = {
   },
   // Call var from Object to display in console
   displayWeather: function (data) {
-    var { icon, description } = data.list[0].weather[0];
-    var { temp, humidity } = data.list[0].main;
-    var { speed } = data.list[0].wind;
-    var { feels_like } = data.list[0].main;
-    var { dt_txt } = data.list[0];
+    // for (var i = 0; i <= 40; i+=8){}
+    var dataList = data.list[i];
+    var newWeatherCard = document.createElement("div");
+    newWeatherCard.setAttribute("class", "card");
+    newWeatherCard.style.width = "100%";
+    weatherSection.append(newWeatherCard);
+
+    var weatherCardBody = document.createElement("div");
+    weatherCardBody.setAttribute("class", "card-body");
+    newWeatherCard.append(weatherCardBody);
+
+    //Create p tags to display weather conditions
+    var newCardIcon = document.createElement("img");
+    newCardIcon.setAttribute("class", "card-img-top");
+    weatherCardBody.append(newCardIcon);
+
+    var newDescription = document.createElement("p");
+    newDescription.setAttribute("class", "description");
+    weatherCardBody.append(newDescription);
+
+    var newDateText = document.createElement("p");
+    newDateText.setAttribute("class", "dateText");
+    weatherCardBody.append(newDateText);
+
+    var newTemp = document.createElement("p");
+    newTemp.setAttribute("class", "tempature");
+    weatherCardBody.append(newTemp);
+
+    var newFeelsLike = document.createElement("p");
+    newFeelsLike.setAttribute("class", "feels-like");
+    weatherCardBody.append(newFeelsLike);
+
+    var newHumidity = document.createElement("p");
+    newHumidity.setAttribute("class", "humidity");
+    weatherCardBody.append(newHumidity);
+
+    var newWindSpeed = document.createElement("p");
+    newWindSpeed.setAttribute("class", "wind-speed");
+    weatherCardBody.append(newWindSpeed);
+
+    // document.body.children["appBody"].children["weatherSection"].createElement("div");
+    //Weather conditions
+    var { icon, description } = dataList.weather[0];
+    var { dt_txt } = dataList;
+    var { temp, humidity } = dataList.main;
+    var { speed } = dataList.wind;
+    var { feels_like } = dataList.main;
     // console.log(name, icon, description, temp, humidity, speed);
 
     //Display Weather data in the weather card
