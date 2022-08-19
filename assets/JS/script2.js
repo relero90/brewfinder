@@ -71,7 +71,7 @@ var weather = {
   },
   // Call var from Object to display in console
   displayWeather: function (data) {
-    // for (var i = 0; i <= 40; i+=8){}
+    for (var i = 0; i <= 40; i+=8){
     var dataList = data.list[i];
     var newWeatherCard = document.createElement("div");
     newWeatherCard.setAttribute("class", "card");
@@ -121,14 +121,15 @@ var weather = {
     // console.log(name, icon, description, temp, humidity, speed);
 
     //Display Weather data in the weather card
-    document.querySelector(".card-img-top").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    newCardIcon.setAttribute("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png");
+    // document.querySelector(".card-img-top").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
     document.querySelector(".description").innerText = description;
     document.querySelector(".dateText").innerText = dt_txt;
     document.querySelector(".tempature").innerText = "Tempature : " + temp + "°F";
     document.querySelector(".feels-like").innerText = "Feels Like : " + feels_like + "°F";
     document.querySelector(".humidity").innerText = "Humidity : " + humidity + "%";
     document.querySelector(".wind-speed").innerText = "Wind Speed : " + speed + "mph";
-  },
+  }},
   search: function () {
     weather.fetchWeather(document.querySelector("#cityInput").value);
   },
