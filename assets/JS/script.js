@@ -18,6 +18,7 @@ var stateInput = document.querySelector("#stateInput");
 var stateConcat = "";
 var selectedState = "";
 var stateDisplayText = document.querySelector("#stateName");
+var weatherSection = document.querySelector("#weatherSection");
 
 //Key press Enter starts localSave function
 enterBtn.addEventListener("keydown", function (event) {
@@ -36,6 +37,7 @@ function clear() {
   console.log(count);
   if (count > 1) {
     eventsSection.innerText = "";
+    weatherSection.innerText = "";
   }
 }
 
