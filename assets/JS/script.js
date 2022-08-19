@@ -12,9 +12,13 @@ var selectedCity = "";
 var savedCitiesDiv = $("#saved-cities");
 var enterBtn = document.querySelector("#cityInput");
 var count = 0;
-
 var cityDisplayText = document.querySelector("#cityName");
 console.log(cityDisplayText);
+var stateInput = document.querySelector("#stateInput");
+var stateConcat = "";
+var selectedState = "";
+var stateDisplayText = document.querySelector("#stateName");
+
 //Key press Enter starts localSave function
 enterBtn.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
@@ -43,15 +47,17 @@ function localSave() {
 
   selectedCity = cityInput.value;
   cityConcat = selectedCity.replace(/\s/g, "+");
-  // console.log(cityConcat);
+  selectedState = stateInput.value;
+  stateConcat = selectedState.replace(/\s/g, "_");
 
+  stateDisplayText.textContent = ", " + selectedState;
   cityDisplayText.textContent = selectedCity;
   // Becca added unshift to populate first spot in array
   savedCitySearches.unshift(selectedCity);
   console.log(savedCitySearches);
 
   var savedCity = document.createElement("button");
-  savedCity.textContent = selectedCity;
+  savedCity.textContent = selectedCity + ", " + selectedState;
 
   savedCity.setAttribute("data-city", selectedCity);
   savedCity.setAttribute("id", "btn-2");
@@ -63,8 +69,8 @@ function localSave() {
   // Becca sent array to localStorage
   var storedStringInput = JSON.stringify(savedCitySearches);
   localStorage.setItem("savedCitiesString", storedStringInput);
-
   localStorage.setItem("city", selectedCity);
+  localStorage.setItem("city", selectedState);
   showEvents();
   clear();
 }
@@ -75,12 +81,13 @@ function showEvents() {
   // Switched out retrieveCity variable in the requestURL concatenation for var cityConcat - new global variable that gets its value in localSave() - it replaces spaces in user inputs with "+"
   var requestUrl =
     "https://api.openbrewerydb.org/breweries?by_city=" +
-    cityConcat +
+    cityConcat + "&by_state=" + stateConcat + 
     "&per_page=100";
   console.log(requestUrl);
   fetch(requestUrl)
     .then(function (response) {
       console.log(response);
+      console.log(response.status);
       return response.json();
     })
     .then(function (data) {
@@ -90,6 +97,14 @@ function showEvents() {
       eventCard.setAttribute("class", "card");
       eventCard.style.width = "100%";
       eventsSection.append(eventCard);
+      //if there is an error message when fetching the api url, then an error message will display instead of an empty div
+      if (data.length == 0) {
+        var errorMsg = document.createElement("div");
+        errorMsg.setAttribute("class", "alert alert-danger");
+        errorMsg.setAttribute("role", "alert");
+        errorMsg.textContent = "Please make sure the city/state is spelled correctly!";
+        eventsSection.append(errorMsg);
+      }
       for (var i = 0; i < 5; i++) {
         var j = Math.floor(Math.random() * data.length);
         //addresses that have "null" won't sho
@@ -151,9 +166,6 @@ function showEvents() {
       return;
     });
 }
-
-//https://ridb.recreation.gov/api/v1/campsites?limit=50&offset=0&api_key=751f29a1-ede4-455b-81ff-495611b01b48
-//link for the government api that im waiting on
 
 // Function to render any old searches in localstorage as buttons at app startup
 function renderSearchHistory() {
