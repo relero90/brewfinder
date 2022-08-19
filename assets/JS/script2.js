@@ -71,8 +71,7 @@ var weather = {
   },
   // Call var from Object to display in console
   displayWeather: function (data) {
-    // for (var i = 0; i <= 40; i+=8){}
-    var dataList = data.list[i];
+    var dataList = data.list;
     var newWeatherCard = document.createElement("div");
     newWeatherCard.setAttribute("class", "card");
     newWeatherCard.style.width = "100%";
@@ -96,7 +95,7 @@ var weather = {
     weatherCardBody.append(newDateText);
 
     var newTemp = document.createElement("p");
-    newTemp.setAttribute("class", "tempature");
+    newTemp.setAttribute("class", "temperature");
     weatherCardBody.append(newTemp);
 
     var newFeelsLike = document.createElement("p");
@@ -110,21 +109,22 @@ var weather = {
     var newWindSpeed = document.createElement("p");
     newWindSpeed.setAttribute("class", "wind-speed");
     weatherCardBody.append(newWindSpeed);
+    // for (var i = 0; i <= 40; i+=8){}
 
     // document.body.children["appBody"].children["weatherSection"].createElement("div");
     //Weather conditions
-    var { icon, description } = dataList.weather[0];
-    var { dt_txt } = dataList;
-    var { temp, humidity } = dataList.main;
-    var { speed } = dataList.wind;
-    var { feels_like } = dataList.main;
+    var { icon, description } = dataList[i].weather[0];
+    var { dt_txt } = dataList[i];
+    var { temp, humidity } = dataList[i].main;
+    var { speed } = dataList[i].wind;
+    var { feels_like } = dataList[i].main;
     // console.log(name, icon, description, temp, humidity, speed);
 
     //Display Weather data in the weather card
     document.querySelector(".card-img-top").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
     document.querySelector(".description").innerText = description;
     document.querySelector(".dateText").innerText = dt_txt;
-    document.querySelector(".tempature").innerText = "Tempature : " + temp + "°F";
+    document.querySelector(".temperature").innerText = "temperature : " + temp + "°F";
     document.querySelector(".feels-like").innerText = "Feels Like : " + feels_like + "°F";
     document.querySelector(".humidity").innerText = "Humidity : " + humidity + "%";
     document.querySelector(".wind-speed").innerText = "Wind Speed : " + speed + "mph";
