@@ -46,17 +46,20 @@ function localSave() {
   // console.log(cityConcat);
 
   cityDisplayText.textContent = selectedCity;
-  // Becca added push to populate empty array
-  savedCitySearches.push(selectedCity);
+  // Becca added unshift to populate first spot in array
+  savedCitySearches.unshift(selectedCity);
   console.log(savedCitySearches);
 
   var savedCity = document.createElement("button");
   savedCity.textContent = selectedCity;
 
   savedCity.setAttribute("data-city", selectedCity);
-  savedCity.setAttribute("data-index", i);
   savedCity.setAttribute("id", "btn-2");
-  savedCitiesDiv.append(savedCity);
+
+  // prepend adds the button as the first child of savedCitiesDiv
+  savedCitiesDiv.prepend(savedCity);
+  // removes the 6th button element to limit the number shown
+  savedCitiesDiv.children().eq(5).remove();
   // Becca sent array to localStorage
   var storedStringInput = JSON.stringify(savedCitySearches);
   localStorage.setItem("savedCitiesString", storedStringInput);
@@ -158,7 +161,7 @@ function renderSearchHistory() {
   console.log(pulledSearch);
   if (pulledSearch !== null) {
     // For each item in the pulledCities array,
-    for (var i = 0; i < pulledSearch.length; i++) {
+    for (var i = pulledSearch.length - 1; i > pulledSearch.length - 6; i--) {
       var savedCity = document.createElement("button");
       savedCity.textContent = pulledSearch[i];
       savedCity.setAttribute("data-city", pulledSearch[i]);
