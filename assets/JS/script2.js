@@ -75,13 +75,13 @@ var weather = {
     var { temp, humidity } = data.list[0].main;
     var { speed } = data.list[0].wind;
     var { feels_like } = data.list[0].main;
-    // var { dt_txt } = data.list[0]
+    var { dt_txt } = data.list[0];
     // console.log(name, icon, description, temp, humidity, speed);
 
     //Display Weather data in the weather card
     document.querySelector(".card-img-top").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
     document.querySelector(".description").innerText = description;
-    // document.querySelector(".dateText").innerText = dt_txt;
+    document.querySelector(".dateText").innerText = dt_txt;
     document.querySelector(".tempature").innerText = "Tempature : " + temp + "°F";
     document.querySelector(".feels-like").innerText = "Feels Like : " + feels_like + "°F";
     document.querySelector(".humidity").innerText = "Humidity : " + humidity + "%";
