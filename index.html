@@ -24,8 +24,14 @@
       <aside class="container">
         <label for="cityInput">Enter a city</label>
         <input type="text" name="cityInput" id="cityInput" />
-        <label for="stateInput">Select a state</label>
-        <input type="text" name="stateInput" id="stateInput">
+        <!-- <label for="stateInput">Select a state</label> -->
+        <select class="stateSelector form-select " aria-label="Default select example">
+          <option selected>Select a state</option>
+          <option name="stateInput" id="stateInput" value="Alabama">Alabama</option>
+          <option name="stateInput" id="stateInput" value="Alaska">Alaska</option>
+          <option name="stateInput" id="stateInput" value="Arizona">Arizona</option>
+        </select>
+        <!-- <input type="text" name="stateInput" id="stateInput"> -->
         <label for="from">From</label>
         <input type="text" id="from" name="from" />
         <label for="to">To</label>

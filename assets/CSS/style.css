@@ -110,8 +110,14 @@ h3 {
   padding: 15px;
   height: 20px;
 }
+.stateSelector {
+  background-color: var(--bright);
+  border-radius: 8px;
+  max-width: 80%;
+  margin: 15px;
+}
 
-.cityWeather,
+.cityInput,
 .dateRange {
   color: var(--dark);
   font-weight: bolder;
