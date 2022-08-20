@@ -1,1 +1,33 @@
 # travel-planner
+
+## About
+
+```
+Brewfinder is an app designed to find random local breweries and weather data in any city in the US.
+```
+
+## User Story
+
+```
+As a user, I want to view local brewery and weather data in the city of my choice so that I can easily plan trips and find local breweries wherever I go.
+```
+
+## Acceptance Criteria
+
+```
+GIVEN I am searching for a local brewery...
+WHEN I enter city and state data and click the search button,
+THEN I am presented with location and contact information for 5 random breweries in that city.
+WHEN I enter a date range,
+THEN I am presented with weather data adjusted to the start date that I entered.
+```
+
+## Screenshot
+
+!["A screenshot of the Brewfinder app showing a user search aside with city, state, and date range inputs and dynamically-populating brewery and weather data sections."](./assets/images/app-screenshot.png)
+
+# Deployed Application
+
+```
+Coming soon!
+```
