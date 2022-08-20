@@ -31,3 +31,11 @@ THEN I am presented with weather data adjusted to the start date that I entered.
 ```
 Coming soon!
 ```
+
+# Technologies Used
+
+Open Brewery Database API:
+https://www.openbrewerydb.org/
+
+OpenWeather API:
+https://openweathermap.org/api
