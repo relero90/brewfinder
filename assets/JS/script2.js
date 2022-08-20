@@ -83,6 +83,11 @@ var weather = {
       newWeatherCard.append(weatherCardBody);
 
       //Create p tags to display weather conditions
+
+      var newDateText = document.createElement("p");
+      newDateText.setAttribute("class", "dateText");
+      weatherCardBody.append(newDateText);
+
       var newCardIcon = document.createElement("img");
       newCardIcon.setAttribute("class", "card-img-top");
       weatherCardBody.append(newCardIcon);
@@ -90,10 +95,6 @@ var weather = {
       var newDescription = document.createElement("p");
       newDescription.setAttribute("class", "description");
       weatherCardBody.append(newDescription);
-
-      var newDateText = document.createElement("p");
-      newDateText.setAttribute("class", "dateText");
-      weatherCardBody.append(newDateText);
 
       var newTemp = document.createElement("p");
       newTemp.setAttribute("class", "temperature");
@@ -121,12 +122,12 @@ var weather = {
       // console.log(name, icon, description, temp, humidity, speed);
 
       //Display Weather data in the weather card
+      // document.querySelector(".dateText").innerText = dt_txt;
+      newDateText.innerText = new Date(dt_txt).toLocaleDateString("en-us", { weekday: "long", year: "numeric", month: "short", day: "numeric" });
       // document.querySelector(".card-img-top").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
       newCardIcon.setAttribute("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png");
       // document.querySelector(".description").innerText = description;
       newDescription.innerText = description;
-      // document.querySelector(".dateText").innerText = dt_txt;
-      newDateText.innerText = dt_txt;
       // document.querySelector(".temperature").innerText = "Temperature : " + temp + "°F";
       newTemp.innerText = "Temperature : " + temp + "°F";
       // document.querySelector(".feels-like").innerText = "Feels Like : " + feels_like + "°F";
