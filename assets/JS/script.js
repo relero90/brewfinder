@@ -83,7 +83,9 @@ function showEvents() {
   // Switched out retrieveCity variable in the requestURL concatenation for var cityConcat - new global variable that gets its value in localSave() - it replaces spaces in user inputs with "+"
   var requestUrl =
     "https://api.openbrewerydb.org/breweries?by_city=" +
-    cityConcat + "&by_state=" + stateConcat + 
+    cityConcat +
+    "&by_state=" +
+    stateConcat +
     "&per_page=100";
   console.log(requestUrl);
   fetch(requestUrl)
@@ -104,7 +106,8 @@ function showEvents() {
         var errorMsg = document.createElement("div");
         errorMsg.setAttribute("class", "alert alert-danger");
         errorMsg.setAttribute("role", "alert");
-        errorMsg.textContent = "Please make sure the city/state is spelled correctly!";
+        errorMsg.textContent =
+          "Please make sure the city/state is spelled correctly!";
         eventsSection.append(errorMsg);
       }
       for (var i = 0; i < 5; i++) {
@@ -174,14 +177,16 @@ function renderSearchHistory() {
   var pulledSearch = JSON.parse(localStorage.getItem("savedCitiesString"));
   console.log(pulledSearch);
   if (pulledSearch !== null) {
-    // For each item in the pulledCities array,
-    for (var i = pulledSearch.length - 1; i > pulledSearch.length - 9; i--) {
-      var savedCity = document.createElement("button");
-      savedCity.textContent = pulledSearch[i];
-      savedCity.setAttribute("data-city", pulledSearch[i]);
-      savedCity.setAttribute("data-index", i);
-      savedCity.setAttribute("id", "btn-2");
-      savedCitiesDiv.append(savedCity);
+    // Up to 8 times, if saved data exists, create and prepend a button
+    for (var i = 0; i < 8; i++) {
+      if (pulledSearch[i] !== undefined) {
+        var savedCity = document.createElement("button");
+        savedCity.textContent = pulledSearch[i];
+        savedCity.setAttribute("data-city", pulledSearch[i]);
+        savedCity.setAttribute("data-index", i);
+        savedCity.setAttribute("id", "btn-2");
+        savedCitiesDiv.append(savedCity);
+      }
     }
   }
 }
@@ -203,13 +208,11 @@ for (var i = 0; i < savedCityBtns.length; i++) {
     showEvents(cityConcat);
   });
 }
-function init() { 
-  //pulling stored dates from local satorage 
-  var inputDate = JSON.parse(localStorage.getItem("storedDates")); 
-  // if stored dates are pulled from local storage update 
-  if(inputDate !== null) { 
-    todos = storedDates; 
-  } 
+function init() {
+  //pulling stored dates from local satorage
+  var inputDate = JSON.parse(localStorage.getItem("storedDates"));
+  // if stored dates are pulled from local storage update
+  if (inputDate !== null) {
+    todos = storedDates;
+  }
 }
-  
-
