@@ -17,7 +17,7 @@ As a user, I want to view local brewery and weather data in the city of my choic
 ```
 GIVEN I am searching for a local brewery...
 WHEN I enter city and state data and click the search button,
-THEN I am presented with location and contact information for 5 random breweries in that city.
+THEN I am presented with location and contact information for 5 random breweries in my chosen city.
 WHEN I enter a date range,
 THEN I am presented with weather data adjusted to the start date that I entered.
 ```
@@ -31,3 +31,11 @@ THEN I am presented with weather data adjusted to the start date that I entered.
 ```
 Coming soon!
 ```
+
+# Technologies Used
+
+Open Brewery Database API:
+https://www.openbrewerydb.org/
+
+OpenWeather API:
+https://openweathermap.org/api
