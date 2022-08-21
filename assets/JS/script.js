@@ -185,7 +185,7 @@ function renderSearchHistory() {
         savedCity.setAttribute("data-city", pulledSearch[i]);
         savedCity.setAttribute("data-index", i);
         savedCity.setAttribute("id", "btn-2");
-        savedCitiesDiv.prepend(savedCity);
+        savedCitiesDiv.append(savedCity);
       }
     }
   }
