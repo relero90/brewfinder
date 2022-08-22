@@ -1,35 +1,21 @@
-/** @format */
-
-//Sarah is taking lines 1-70
 //global variables
 var cityInput = document.querySelector("#cityInput");
-var cityConcat = ""; // emtpy string to hold concatenation of multi-word city names
+var selectedCity = "";
+var cityConcat = "";
+var stateInput = document.querySelector("#stateInput");
+var selectedState = "";
+var stateConcat = "";
 var eventBtn = document.querySelector(".seeEvents");
 var eventsSection = document.querySelector("#eventsSection");
 var eventCard = document.querySelector("#eventCard");
 var eventUnorderedList = document.querySelector("#eventUnorderedList");
-var selectedCity = "";
 var savedCitiesDiv = $("#saved-cities");
 var enterBtn = document.querySelector("#cityInput");
 var count = 0;
 var cityDisplayText = document.querySelector("#cityName");
 console.log(cityDisplayText);
-var stateInput = document.querySelector("#stateInput");
-var stateConcat = "";
-var selectedState = "";
 var stateDisplayText = document.querySelector("#stateName");
 var weatherSection = document.querySelector("#weatherSection");
-
-//Key press Enter starts localSave function
-enterBtn.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    localSave();
-  }
-});
-
-//event listeners
-
-eventBtn.addEventListener("click", localSave, clear);
 
 //clears previous results from showing breweries when button is clicked more than once
 function clear() {
@@ -193,6 +179,25 @@ function renderSearchHistory() {
 }
 renderSearchHistory();
 
+function init() {
+  //pulling stored dates from local satorage
+  var inputDate = JSON.parse(localStorage.getItem("storedDates"));
+  // if stored dates are pulled from local storage update
+  if (inputDate !== null) {
+    todos = storedDates;
+  }
+}
+
+//event listeners
+eventBtn.addEventListener("click", localSave, clear);
+
+//Key press Enter starts localSave function
+enterBtn.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    localSave();
+  }
+});
+
 var savedCityBtns = document.querySelectorAll("#btn-2");
 for (var i = 0; i < savedCityBtns.length; i++) {
   savedCityBtns[i].addEventListener("click", function () {
@@ -208,12 +213,4 @@ for (var i = 0; i < savedCityBtns.length; i++) {
     // passes value of cityConcat to showEvents()
     showEvents(cityConcat);
   });
-}
-function init() {
-  //pulling stored dates from local satorage
-  var inputDate = JSON.parse(localStorage.getItem("storedDates"));
-  // if stored dates are pulled from local storage update
-  if (inputDate !== null) {
-    todos = storedDates;
-  }
 }
