@@ -182,10 +182,10 @@ document
     }
   });
 
-//date picker
-$(function () {
-  $("#datepicker").datepicker();
-});
+// //date picker
+// $(function () {
+//   $("#datepicker").datepicker();
+// });
 
 //date range
 $(function () {
@@ -216,8 +216,17 @@ $(function () {
     } catch (error) {
       date = null;
     }
-    return date;
     console.log(date);
+    document.querySelector(".dateRange").textContent = date.toLocaleDateString(
+      "en-us",
+      {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }
+    );
+    return date;
   }
 });
 
