@@ -59,7 +59,8 @@ function localSave() {
   console.log(savedCitySearches);
 
   var savedCity = document.createElement("button");
-  savedCity.textContent = selectedCity + ", " + selectedState;
+  savedCity.textContent = selectedCity;
+  //  + ", " + selectedState;
 
   savedCity.setAttribute("data-city", selectedCity);
   savedCity.setAttribute("id", "btn-2");
@@ -72,7 +73,7 @@ function localSave() {
   var storedStringInput = JSON.stringify(savedCitySearches);
   localStorage.setItem("savedCitiesString", storedStringInput);
   localStorage.setItem("city", selectedCity);
-  localStorage.setItem("city", selectedState);
+  localStorage.setItem("state", selectedState);
   showEvents();
   clear();
 }

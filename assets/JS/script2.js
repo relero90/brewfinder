@@ -65,7 +65,12 @@ var weather = {
   APIkey: "501721a232530766e41f1ad70cfed92b",
   //Call weather based on city defined
   fetchWeather: function (city) {
-    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + weather.APIkey)
+    fetch(
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
+        city +
+        "&units=imperial&appid=" +
+        weather.APIkey
+    )
       .then((response) => response.json())
       .then((data) => weather.displayWeather(data));
   },
@@ -123,9 +128,17 @@ var weather = {
 
       //Display Weather data in the weather card
       // document.querySelector(".dateText").innerText = dt_txt;
-      newDateText.innerText = new Date(dt_txt).toLocaleDateString("en-us", { weekday: "long", year: "numeric", month: "short", day: "numeric" });
+      newDateText.innerText = new Date(dt_txt).toLocaleDateString("en-us", {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
       // document.querySelector(".card-img-top").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-      newCardIcon.setAttribute("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png");
+      newCardIcon.setAttribute(
+        "src",
+        "http://openweathermap.org/img/wn/" + icon + "@2x.png"
+      );
       // document.querySelector(".description").innerText = description;
       newDescription.innerText = description;
       // document.querySelector(".temperature").innerText = "Temperature : " + temp + "°F";
@@ -143,20 +156,36 @@ var weather = {
   },
 };
 //search button from users input
-document.querySelector(".container button").addEventListener("click", function () {
-  weather.search();
-});
-//Return keypress starts search function
-document.querySelector("#cityInput").addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
+document
+  .querySelector(".container button")
+  .addEventListener("click", function () {
     weather.search();
-  }
-});
+  });
 
-//date picker
-$(function () {
-  $("#datepicker").datepicker();
-});
+// Search history btns render weather forecast
+var savedCityBtns = document.querySelectorAll("#btn-2");
+for (var i = 0; i < savedCityBtns.length; i++) {
+  savedCityBtns[i].addEventListener("click", function () {
+    // grabs data-city attribute of clicked button (a text string equal to the city name) and makes it equal to your city variable
+    city = $(this).attr("data-city").replace(/\s/g, "+");
+    // calls fetchWeather and feeds it this new city value
+    weather.fetchWeather(city);
+  });
+}
+
+//Return keypress starts search function
+document
+  .querySelector("#cityInput")
+  .addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      weather.search();
+    }
+  });
+
+// //date picker
+// $(function () {
+//   $("#datepicker").datepicker();
+// });
 
 //date range
 $(function () {
@@ -187,8 +216,17 @@ $(function () {
     } catch (error) {
       date = null;
     }
-    return date;
     console.log(date);
+    document.querySelector(".dateRange").textContent = date.toLocaleDateString(
+      "en-us",
+      {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      }
+    );
+    return date;
   }
 });
 
