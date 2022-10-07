@@ -1,4 +1,4 @@
-# travel-planner
+# Brewfinder
 
 ## About
 
@@ -26,9 +26,7 @@ THEN I am presented with location and contact information for 5 random breweries
 
 # Deployed Application
 
-```
-https://relero90.github.io/brewfinder/
-```
+(Click here for Brewfinder)[https://relero90.github.io/brewfinder/]
 
 # Technologies Used
 
